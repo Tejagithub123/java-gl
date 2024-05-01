@@ -1,0 +1,36 @@
+// Create an interface for Oeuvre factories
+interface OeuvreFactory {
+    Oeuvre createOeuvre(int id, String titre, String auteur, String categorie);
+}
+// Implement concrete factories for Livre and Magazine
+class LivreFactory implements OeuvreFactory {
+    @Override
+    public Oeuvre createOeuvre(int id, String titre, String auteur, String categorie) {
+        return new Livre(id, titre, auteur, categorie);
+    }
+}
+class MagazineFactory implements OeuvreFactory {
+    @Override
+    public Oeuvre createOeuvre(int id, String titre, String auteur, String categorie) {
+        return new Magazine(id, titre, auteur, categorie);
+    }
+}
+// Modify the getOeuvreInfos() method to use a factory
+private Oeuvre getOeuvreInfos() {
+    int identifiant = Integer.parseInt(identifiantField.getText());
+    String titre = titreField.getText();
+    String auteur = auteurField.getText();
+    String categorie = categorieField.getText();
+    String typeOeuvre = typeOeuvreCombo.getSelectedItem().toString();
+
+    // Determine the appropriate factory based on the type
+    OeuvreFactory factory;
+    if (typeOeuvre.equals(Magazine.class.getSimpleName())) {
+        factory = new MagazineFactory();
+    } else {
+        factory = new LivreFactory();
+    }
+
+    // Use the factory to create the Oeuvre object
+    return factory.createOeuvre(identifiant, titre, auteur, categorie);
+}
