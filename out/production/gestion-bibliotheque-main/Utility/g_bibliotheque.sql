@@ -182,12 +182,12 @@ INSERT INTO `exemplaire` (`ID`, `OeuvreID`, `etat`) VALUES
 
 CREATE TABLE `oeuvre` (
   `ID` int(11) NOT NULL,
-  `Titre` varchar(255) NOT NULL,
-  `Auteur` varchar(255) NOT NULL,
-  `Categorie` varchar(255) NOT NULL,
-  `NbResa` int(11) NOT NULL DEFAULT 0,
-  `Lending` int(11) NOT NULL,
-  `TypeOeuvre` varchar(255) NOT NULL
+  `Titre` varchar(25) NOT NULL,
+  `Auteur` varchar(25) NOT NULL,
+  `Categorie` varchar(25) NOT NULL,
+  `NbResa` int(3) NOT NULL DEFAULT 0,
+  `Lending` int(3) NOT NULL,
+  `TypeOeuvre` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -302,12 +302,12 @@ INSERT INTO `reservation` (`ID`, `OeuvreID`, `UsagerID`, `dateReservation`, `Dat
 
 CREATE TABLE `usager` (
   `ID` int(11) NOT NULL,
-  `Nom` varchar(255) NOT NULL,
-  `Prenom` varchar(255) NOT NULL,
+  `Nom` varchar(20) NOT NULL,
+  `Prenom` varchar(20) NOT NULL,
   `DateNais` date NOT NULL,
-  `Sexe` varchar(255) NOT NULL,
-  `Adresse` varchar(255) NOT NULL,
-  `Tel` varchar(255) NOT NULL
+  `Sexe` varchar(1) NOT NULL,
+  `Adresse` varchar(30) NOT NULL,
+  `Tel` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
