@@ -206,11 +206,6 @@ public class Oeuvre {
         return oeuvres.isEmpty() ? null : oeuvres.get(0);
     }
 
-//    public static Oeuvre findByTitre(String titre) throws BibalExceptions {
-//        final String SQL_SELECT_BY_TITRE_OEUVRE = "SELECT * FROM oeuvre WHERE titre = ?";
-//        ArrayList<Oeuvre> oeuvres = find(SQL_SELECT_BY_TITRE_OEUVRE, titre);
-//        return oeuvres.isEmpty() ? null : oeuvres.get(0);
-//    }
     public ArrayList<Oeuvre> findByTitre(String titre) throws BibalExceptions {
         
         final String SQL_SELECT_BY_TITRE_OEUVRE = "SELECT o.*, COUNT(e.oeuvreID)"
@@ -284,34 +279,6 @@ public class Oeuvre {
             closeStatement(preparedStatement);
         }
     }
-    
-    //trouver les oeuvres dont aucun exemplaire n'est disponible
-    /**
-     * Vérifie si l'oeuvre n'a aucun examplaire disponible, si oui elle peut
-     * donc être réservée
-     *
-     *
-     * @return true si on peut la réservée false sinon
-     * @throws BibalExceptions
-     */
-//    public boolean estReservable() throws BibalExceptions {
-//        final String SQL_SELECT_OEUVRE_SANS_EXEMP = "SELECT * FROM oeuvre o"
-//                + " WHERE o.id NOT IN ( "
-//                + "    SELECT e.oeuvreID FROM exemplaire e"
-//                + "    LEFT JOIN emprunt emp"
-//                + "    ON e.id = emp.exemplaireID"
-//                + "    WHERE emp.ExemplaireID IS NULL"
-//                + "    OR dateRetourEffective IS NOT NULL"
-//                + "    ORDER BY e.id)";
-//        ArrayList<Oeuvre> oeuvres = find(SQL_SELECT_OEUVRE_SANS_EXEMP, new Object[0]);
-//        if (oeuvres.isEmpty()) {
-//            return false;
-//        }
-//        Stream<Oeuvre> filterOeuvre
-//                = oeuvres.stream().filter((oeuvre1) -> (this.getId() == oeuvre1.getId()));
-//
-//        return filterOeuvre.findFirst().isPresent();
-//    }
 
     @Override
     public String toString() {

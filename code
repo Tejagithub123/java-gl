@@ -1,36 +1,93 @@
-// Create an interface for Oeuvre factories
-interface OeuvreFactory {
-    Oeuvre createOeuvre(int id, String titre, String auteur, String categorie);
+public interface Livre {
+    void make();
 }
-// Implement concrete factories for Livre and Magazine
-class LivreFactory implements OeuvreFactory {
-    @Override
-    public Oeuvre createOeuvre(int id, String titre, String auteur, String categorie) {
-        return new Livre(id, titre, auteur, categorie);
-    }
-}
-class MagazineFactory implements OeuvreFactory {
-    @Override
-    public Oeuvre createOeuvre(int id, String titre, String auteur, String categorie) {
-        return new Magazine(id, titre, auteur, categorie);
-    }
-}
-// Modify the getOeuvreInfos() method to use a factory
-private Oeuvre getOeuvreInfos() {
-    int identifiant = Integer.parseInt(identifiantField.getText());
-    String titre = titreField.getText();
-    String auteur = auteurField.getText();
-    String categorie = categorieField.getText();
-    String typeOeuvre = typeOeuvreCombo.getSelectedItem().toString();
 
-    // Determine the appropriate factory based on the type
-    OeuvreFactory factory;
-    if (typeOeuvre.equals(Magazine.class.getSimpleName())) {
-        factory = new MagazineFactory();
-    } else {
-        factory = new LivreFactory();
+public class LivreElectronique implements Livre {
+    public LivreElectronique() {
+        this.make();
     }
 
-    // Use the factory to create the Oeuvre object
-    return factory.createOeuvre(identifiant, titre, auteur, categorie);
+    public void make() {
+        System.out.println("Créer un livre électronique !");
+    }
+}
+
+public class LivrePhysique implements Livre {
+    public LivrePhysique() {
+        this.make();
+    }
+
+    public void make() {
+        System.out.println("Créer un livre physique !");
+    }
+}
+
+public interface Magazine {
+    void make();
+}
+
+public class MagazineElectronique implements Magazine {
+    public MagazineElectronique() {
+        this.make();
+    }
+
+    @Override
+    public void make() {
+        System.out.println("Créer un magazine électronique !");
+    }
+}
+
+public class MagazinePhysique implements Magazine {
+    public MagazinePhysique() {
+        this.make();
+    }
+
+    @Override
+    public void make() {
+        System.out.println("Créer un magazine physique !");
+    }
+}
+
+public interface OeuvreFactory {
+    Livre makeLivre();
+    Magazine makeMagazine();
+}
+
+public class OeuvreElectroniqueFactory implements OeuvreFactory {
+    public Livre makeLivre() {
+        return new LivreElectronique();
+    }
+
+    public Magazine makeMagazine() {
+        return new MagazineElectronique();
+    }
+}
+
+public class OeuvrePhysiqueFactory implements OeuvreFactory {
+    public Livre makeLivre() {
+        return new LivrePhysique();
+    }
+
+    public Magazine makeMagazine() {
+        return new MagazinePhysique();
+    }
+}
+
+public class Client {
+    public static void main(String[] args) {
+        OeuvreFactory oeuvreElectroniqueFactory = new OeuvreElectroniqueFactory();
+        OeuvreFactory oeuvrePhysiqueFactory = new OeuvrePhysiqueFactory();
+
+        Livre livreElectronique = oeuvreElectroniqueFactory.makeLivre();
+        livreElectronique.make();
+
+        Magazine magazineElectronique = oeuvreElectroniqueFactory.makeMagazine();
+        magazineElectronique.make();
+
+        Livre livrePhysique = oeuvrePhysiqueFactory.makeLivre();
+        livrePhysique.make();
+
+        Magazine magazinePhysique = oeuvrePhysiqueFactory.makeMagazine();
+        magazinePhysique.make();
+    }
 }

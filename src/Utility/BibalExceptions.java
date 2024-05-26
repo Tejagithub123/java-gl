@@ -2,10 +2,6 @@ package Utility;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author khalil
- */
 public class BibalExceptions extends Exception{
 
     public BibalExceptions(String message) {

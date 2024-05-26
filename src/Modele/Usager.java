@@ -258,6 +258,8 @@ public class Usager {
         return listUsagers;
     }
 
+    //Lorsqu'une requête SQL est exécutée à partir d'un programme Java, elle retourne un objet ResultSet qui contient les lignes résultantes de la requête, ligne par ligne. Un ResultSet est essentiellement une structure de données tabulaire qui peut être parcourue pour récupérer les données de chaque ligne.
+
     private static Usager mappingUsager(ResultSet resultSet) throws SQLException {
 
         Usager usager = new Usager();

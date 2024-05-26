@@ -32,12 +32,6 @@ public class Emprunt {
         exemplairesEmprunt = new Exemplaire();
     }
 
-    /**
-     * 
-     * @param id identifiant  emprunt
-     * @param dateEmprunt date emprunt
-     * @param dateRetourPrevu  date de retour prévu
-     */
     public Emprunt(int id, Date dateEmprunt, Date dateRetourPrevu) {
         this.id = id;
         this.dateEmprunt = dateEmprunt;
@@ -108,14 +102,7 @@ public class Emprunt {
         this.usagerEmprunt = usagerEmprunt;
     }
 
-    /**
-     * Emprunter un exemplaire
-     * @param usager l'usager qui veut emprunter
-     * @param oeuvre l'oeuvre dont on veut emprunter l'exemplaire
-     * @param exemplaire un exemplaire de l'oeuvre à emprunter
-     * @param dateJour date d'emprunt
-     * @throws BibalExceptions Une exception en cas d'erreurs
-     */
+
     public void emprunter(Usager usager, Oeuvre oeuvre, Exemplaire exemplaire, Date dateJour) throws BibalExceptions {
         Emprunt emprunt = findEmpruntNonRendu(usager, oeuvre);
         if (null != emprunt) {
